@@ -1,0 +1,106 @@
+\singlespacing
+
+\chapter{Thesis Plan}
+\label{chap:plan}
+
+\begin{itemize}
+    \item Introduction
+    \begin{itemize}
+        \item Streaming is popular on the internet
+        \item Streaming is bandwidth and latency intense
+        \item CDNs/Streaming Protocols are used to allow for best streaming performance
+        \item These assume start-to-finish model
+
+        \item Users want more than start-to-finish
+        \item VCR style controls are used
+        \item More novel interactivity controls such as bookmarks could also be used
+        \item Current CDNs/Streaming protocols are not optimised for these interactive workloads
+    \end{itemize}
+
+    \item Background
+
+    \begin{itemize}%
+        \item Previous characterisations of Access Patterns
+        \begin{itemize}
+            \item Video-on-Demand
+            \begin{itemize}
+                \item Popularity
+                \item Popularity Over Time / Recommendations
+                \item Session duration
+                \item Interactivity
+                \item Popularity Within Content
+            \end{itemize}
+            \item Live Streaming
+            \begin{itemize}
+    				\item Popularity
+    				\item Time-of-day
+    				\item Session duration
+    				\item Interactivity
+            \end{itemize}
+        \end{itemize}
+
+        \item Discussion on Interactivity and how it breaks streaming
+        \begin{itemize}
+            \item Introduction
+            \item Push/Pull Techniques~\footnote{incorporating Andy's Hybrid work.}\saveFN\andy\
+            \item Hybrid concepts~\useFN\andy\
+        \end{itemize}
+
+        \item Papers about VoD systems, such as YouTube, and M\$'s
+        \begin{itemize}
+            \item Overview
+            \item Describe what's typical on these services
+            \item Describe what problems they have
+        \end{itemize}
+
+    \end{itemize}
+
+    \item Experiment
+    \begin{itemize}
+        \item User Study setup
+        \item Tools developed (P2P Simulator, FLVTool++)
+    \end{itemize}
+
+    \item Evaluation (and modelling)
+    \begin{itemize}
+        \item Interactions
+        \item Seek Distance
+        \item Popularity
+        \item Longevity
+        \item Session Lengths
+        \item Inter-seek Times
+        \item Sequence
+        \item Hotspot Length
+    \end{itemize}
+
+    \item Approaches to improve interactivity
+    \begin{itemize}
+        \item Bookmark Creation and Moving Bookmarks
+        \item Hotspot detection
+        \item Predictive pre-fetching
+        \item Techniques to support these in a distributed way~\footnote{80\% done}
+        \item Hybrid Streaming Techniques~\useFN\andy\
+    \end{itemize}
+
+    \item Conclusions
+    \begin{itemize}
+        \item Thesis Contributions
+        \item Future Work
+        \item Summary
+    \end{itemize}
+    
+%    \item Extras (not currently included)~\footnote{Needs starting}
+%    \begin{itemize}
+%            \item Distributed pre-fetching, how can my miss be your hit?
+%            \item Repeat visits to the worldcup site
+%
+%            \item Check if my results are ``fetch-at-most-one'' or not?
+%
+%            \item Look at probability of two events happening next to each other. ie 2 forward jumps, or 2 pauses, or forward jump then backwards jump.
+%
+%            \item Look at ``spurts'' of interactivity requests. ie do they happen uniformly across the session, or mostly in one go.
+%
+%            \item Look at CDF of \# of interactive request per user
+%    \end{itemize}
+
+\end{itemize} 

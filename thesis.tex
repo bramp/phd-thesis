@@ -1,0 +1,341 @@
+% file thesis.tex
+% Master Document
+
+\documentclass[a4paper,oneside,11pt]{book} %twoside,draft,openright]
+\tolerance=1000  % all 3 of these commands make LaTeX less fussy about what
+\hbadness=10000  % is a ``good'' length/width/height of a page
+\raggedbottom
+
+% For Margins
+\usepackage{a4}
+\usepackage{anysize}
+%{left}{right}{top}{bottom}
+%\marginsize{38mm}{25mm}{25mm}{25mm} % For print
+\marginsize{31.5mm}{31.5mm}{25mm}{25mm} % For web
+
+\usepackage{ifxetex}
+
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{multirow}
+
+% Makes the text looks a little nicer
+\ifxetex
+    \usepackage[table,hyperref]{xcolor}
+
+    %for use with XeTeX
+    \usepackage{fontspec}
+    \usepackage{xunicode}
+    \usepackage{xltxtra}
+
+    \defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (``quotes'' --- dashes etc.) to unicode
+
+    \setmainfont[Scale=1.075,Ligatures={Common},Numbers={Lining}]{Adobe Garamond Pro}
+    %\setmainfont[Scale=1.075,Ligatures={Common},Numbers={Lining}]{Adobe Caslon Pro}
+    %\setmainfont[Scale=1.075,Ligatures={Common},Numbers={Lining}]{Minion Pro}
+
+    %Look at Neosan for headings
+
+    %\setromanfont [Ligatures={Common,Rare},Numbers={OldStyle}]{Adobe Garamond Pro}
+    %\setmonofont[Scale=0.8]{Monaco}
+    %\setsansfont[Scale=0.9]{Optima Regular}
+\else
+    \usepackage[table,fixpdftex,hyperref]{xcolor}
+
+    \usepackage[ansinew]{inputenc}
+
+    % Makes copy and paste work better ie ligatures get converted
+    \usepackage{cmap}
+    \usepackage{mmap}
+    \usepackage[protrusion=true,expansion=true]{microtype}
+
+    % Use a nice Adobe font
+    % used instructions from: http://umrg.uwaterloo.ca/cpoile/LaTeX
+    \usepackage[LY1]{fontenc}
+    %\usepackage[ansinew]{inputenc}
+    %\usepackage[scaled=1.05,lining]{GaramondPro} % [oldstyle] for different number style
+    % can use \textos{1234} or \textln{5678} to change how the numbers are displayed
+\fi
+
+\usepackage[font=small,format=hang,labelfont=bf,up,up]{caption} % fancy captions
+
+% Removed the following because it doesn't work very well
+%\usepackage[notlot,notlof]{tocbibind} % Adds the ToC, Bib, etc to the table of contents.
+\usepackage[titles]{tocloft} % Allows the table of contents to be altered easily
+
+\usepackage{subfig}
+\usepackage{graphicx}
+
+\usepackage{titling} % Allows the title page vars to be reused
+
+\usepackage{setspace} %double spacing for text, single for captions,
+		      	   %footnotes, etc.
+%\usepackage{draft} %draft option - doesn't put full figures in -
+		    % useful when editing
+
+\usepackage{needspace}
+
+% Makes fancy footers/headers on the pages
+\usepackage{fancyhdr}
+
+\usepackage{savefnmark} % For reusing footnotes
+
+% Change the font for section headings
+\usepackage{sectsty}
+\allsectionsfont{\sffamily}
+
+\usepackage{fncychap} % fancy Chapters headings
+
+% Hacked version of Sonny
+\makeatletter
+  \ChNameVar {\sffamily\Huge}           % sets the style for name
+  \ChNumVar  {\sffamily\Huge}           % sets the style for digit
+  \ChTitleVar{\sffamily\Huge\bfseries}  % sets the style for title
+  \ChRuleWidth{0.5pt}
+  %\ChNameUpperCase           % Make name uppercase
+
+  \renewcommand{\DOCH}{%     % formats the chapter name and number.
+    \raggedright
+    \CNV\FmN{\@chapapp \space \thechapter}
+    \par\nobreak}
+
+  \renewcommand{\DOTI}[1]{%  % formats the chapter title for \chapter
+    \raggedright
+    \CTV\FmTi{#1}\par\nobreak
+    \vskip -1\baselineskip\vskip 10pt\mghrulefill{\RW}\par\nobreak
+    \vskip 40\p@}
+
+  \renewcommand{\DOTIS}[1]{%  % formats the chapter title for \chapter*
+    \raggedright
+    \CTV\FmTi{#1}\par\nobreak
+    \vskip -1\baselineskip\vskip 10pt\mghrulefill{\RW}\par\nobreak
+    \vskip 20\p@}
+
+\makeatother
+
+% Allow for multiple bibs
+\usepackage{multibib}
+\newcites{A,B}{Related Publications,Other Publications}
+
+\usepackage{enumitem} % Customise lists
+\setdescription{leftmargin=1em} % Make the lists less indented
+
+% Adds extra PDF metadata
+\usepackage{hyperxmp}
+
+%for PDF features (last imported package, for maximum capability)
+\ifxetex
+    \usepackage[unicode,xetex,pdfpagelabels,pagebackref]{hyperref} % For the bookmark/hyperlinks
+\else
+    \usepackage[unicode,pdftex,pdfpagelabels,pagebackref]{hyperref} % For the bookmark/hyperlinks
+\fi
+
+% for the algorithm
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usepackage[all]{hypcap} % Changes figure links to the top of figures, not the captions
+
+% *************************** Metadata *********************************
+
+    % Perhaps, "The Impact of Highly Interactive Workloads on Video-on-Demand Systems"
+    % The Impact of Highly Interactive Workloads on Content Distribution Networks
+\title{The Impact of Highly Interactive Workloads on Video-on-Demand Systems}
+\author{Andrew Brampton B.Sc (Hons)}
+\date{September 2008}
+
+\hypersetup{%
+    pdftitle={\thetitle},
+    pdfauthor={\theauthor},
+    pdfsubject={},
+    pdfkeywords={Interactive, Video-on-demand, Multimedia, Workloads, Characterisation},
+    pdfcopyright={Copyright (C) 2008, Andrew Brampton},
+%
+    plainpages=false,
+    bookmarksnumbered=true,
+    pdfstartview={FitV}, % Full screen vertical
+    colorlinks={false},  % No color links
+    pdfborder={0 0 0},   % No borders around links
+%
+    pdfcreator={XeTeX},%
+%    pdfproducer={XeTeX}%
+%
+%    colorlinks={true},  % We specify color links, but set them to black, so we don't get boxes around each link
+%    linkcolor={black},  % Color for normal internal links.
+%    anchorcolor={black},% Color for anchor text.
+%    citecolor={black},  % Color for bibliographical citations in text.
+%    filecolor={black},  % Color for URLs which open local files.
+%    menucolor={black},  % Color for Acrobat menu items.
+%    urlcolor={black},   % Color for linked URLs.
+}
+
+% **************************** Macros **********************************
+
+\newcommand{\todo}[1]{
+    %\fcolorbox{red}{white}{
+    \fbox{
+        \color{red}
+        \small
+        \sf TODO: #1
+    }
+}
+
+% **************************** Some custom table stuff Macros
+
+%\cellw{width}{text}
+\newcommand{\cellw}[2]{%
+    \begin{minipage}[c]{#1}
+        \begin{center}#2\end{center}
+    \end{minipage}%
+}
+
+%\cellxyw{cols}{rows}{width}{opt}{text}
+\newcommand{\cellxyw}[5]{
+\ifx1#1 % One col
+    \ifx1#2 % One col - One row
+        #5
+    \else % One col - Multi rows
+        \multirow{#2}{*}{%
+            \cellw{#3}{#5}
+        }
+    \fi
+\else % Multi cols
+    \ifx1#2 % Multi cols - One row
+        \multicolumn{#1}{>{\columncolor{\RowColorName}}#4}{%
+            \cellw{#3}{#5}
+        }
+    \else % Multi cols - Multi rows
+        \multicolumn{#1}{>{\columncolor{\RowColorName}}#4}{%
+            \multirow{#2}{*}{%
+                \cellw{#3}{#5}
+            }
+        }
+    \fi
+\fi
+}
+
+\newcommand{\cellxy}[3]{\cellxyw{#1}{#2}{#1\tablecolwidth}{c}{#3}}
+\newcommand{\cellbxy}[3]{\cellxyw{#1}{#2}{#1\tablecolwidth}{c}{\textbf{#3}}}
+
+\newcommand{\cellendxy}[3]{\cellxyw{#1}{#2}{#1\tablecolwidth}{c|}{#3}}
+\newcommand{\cellendbxy}[3]{\cellxyw{#1}{#2}{#1\tablecolwidth}{c|}{\textbf{#3}}}
+
+\newcommand{\setrowcolor}[1]{\noalign{\gdef\RowColorName{#1}}\rowcolor{\RowColorName}}
+
+\definecolor{TableRowHead}{rgb}{0.52734375,0.63671875,1} %87a3ff
+\definecolor{TableRowA}{rgb}{1,1,1}
+\definecolor{TableRowB}{rgb}{0.858,0.898,0.945} %dbe5f1
+
+\newlength{\tablecolwidth}
+%\setlength{\tabcolsep}{2pt} % horz spacing
+%\setlength{\extrarowheight}{2pt} % spacing above cell
+\setlength{\arrayrulewidth}{1pt}
+
+% *****************************************************
+
+% Puts angle brackets around some text
+\newcommand{\bracket}[1]{\textless #1\textgreater}
+
+% Set the section number depth
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+%
+\renewcommand{\cftsecindent}{1 em}
+%\renewcommand{\cftsecnumwidth}{1.9 em}
+
+\renewcommand{\cftsubsecindent}{2 em}
+%\renewcommand{\cftsubsecnumwidth}{2.8 em}
+
+\renewcommand{\cftsubsubsecindent}{3 em}
+%\renewcommand{\cftsubsubsecnumwidth}{3.2 em}
+
+% Configure \autoref
+% http://osdir.com/ml/emacs.auctex.general/2005-11/msg00093.html
+% http://www.latex-community.org/viewtopic.php?f=4&t=334
+\def\chapterautorefname{Chapter}
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Subsection}
+\def\subsubsectionautorefname{Subsection}
+\def\figureautorefname{Figure}
+\def\subfigureautorefname{Figure}
+\def\tableautorefname{Table}
+\def\algorithmautorefname{Algorithm}
+
+\newcommand{\sth}[0]{\textsuperscript{th}\space}
+\newcommand{\st}[0]{\textsuperscript{st}\space}
+\newcommand{\nd}[0]{\textsuperscript{nd}\space}
+\newcommand{\rd}[0]{\textsuperscript{rd}\space}
+
+
+% ******************** Include Only These Files ************************
+%\includeonly{}
+%\includeonly{title,abstract,acknowledgment}
+\includeonly{title,abstract,acknowledgment,publications,intro,background,experiment,evaluation,improve,conclusion,bibliography}
+%\includeonly{background, bibliography}
+%\includeonly{intro}
+%\includeonly{experiment}
+
+
+%Defines the headers of the page
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter:\,\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\,\ #1}}
+
+% fancyhdr settings
+\headheight 16.60005pt % Set to remove warnings
+\fancyhead{}
+\fancyhead[L]{\rm\leftmark}
+\fancyhead[R]{\rm\rightmark}
+
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%      end of preamble and start of document     %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\frontmatter
+    \include{title}
+
+\doublespacing
+\pagestyle{plain}
+
+    \include{abstract}
+    \include{acknowledgment}
+    \include{publications}
+
+    \include{plan}
+
+\onehalfspacing
+    \renewcommand\contentsname{Table of Contents}
+    \phantomsection\addcontentsline{toc}{chapter}{\contentsname}
+    \tableofcontents
+
+    \newpage
+    \listoffigures% \addcontentsline{toc}{chapter}{List of Figures}
+
+    \newpage
+    \listoftables% \addcontentsline{toc}{chapter}{List of Tables}
+
+\doublespacing
+%\onehalfspacing
+%\singlespacing
+
+\mainmatter
+    \pagestyle{fancy}
+
+    \include{intro}
+    \include{background}
+    \include{experiment}
+    \include{evaluation}
+    \include{improve}
+
+    \include{conclusion}
+
+\backmatter
+    \include{appendix}
+\singlespacing
+    \include{bibliography}
+
+\end{document}

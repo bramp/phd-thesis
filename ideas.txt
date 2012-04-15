@@ -1,0 +1,12 @@
+Some roughly ideas
+
+Literature review of caching, and segmentation of video
+
+A more generally perspective might be useful, Look at it from a
+content node perspective, a CDN perspective, and even a user's
+perspective... What happens when we serve many files at once.
+Paint a whole picture. This would make a good collection of
+work for Andrew's Ph D? which could be titled “How do you
+pre-fetch interactive media in CDNs”. which would include work
+on how to adapt to different workloads. Competing media and
+competing workloads.

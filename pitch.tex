@@ -1,0 +1,74 @@
+%input "worldcup.bib"
+
+\documentclass[a4paper]{article}
+%\documentclass[letterpaper,nocopyrightspace]{acm_proc_article-sp}
+\sloppy % makes TeX less fussy about line breaking
+
+%double space
+\renewcommand{\baselinestretch}{1.4}
+
+\usepackage{graphicx}
+
+\usepackage{subfig}
+\usepackage{epsfig}
+\usepackage{multirow}
+
+%for PDF features - http://www.ce.cmu.edu/~kijoo/latex2pdf.pdf
+\usepackage[pdftex,colorlinks]{hyperref} % For the bookmark/hyperlinks
+
+\usepackage{scrpage2}
+\usepackage[nofancy]{svninfo}
+\svnInfo $Id: pitch.tex 2023 2008-02-28 11:49:16Z bramp $
+
+% for \sout
+\usepackage{ulem}
+\normalem
+
+% Some code to add a footer to the page
+\cfoot[]{{\footnotesize\emph{Rev: \svnInfoRevision, \svnInfoTime~\svnInfoLongDate}}}%
+\pagestyle{scrheadings}%
+
+% style of the figure captions
+\newcommand{\capttext}{\protect\centering\em}
+
+% A todo comment feature
+%\newcommand{\todo}[1]{\footnote{TODO: #1}\cbstart\cbend}
+
+\newcommand{\todo}[1]{
+    %\fcolorbox{red}{white}{
+    \fbox{
+        \color{red}
+        \small
+        \sf TODO: #1
+    }
+}
+
+\newcommand{\note}[1]{
+    {~\\~\color{red}\sf #1 }
+}
+
+\hypersetup{%
+    pdftitle={},
+    pdfauthor={Andrew Brampton},
+    pdfkeywords={},
+    bookmarksnumbered,
+    pdfstartview={FitV},
+    linkcolor={black},%: Color for normal internal links.
+    anchorcolor={black},%: Color for anchor text.
+    citecolor={black},%: Color for bibliographical citations in text.
+    filecolor={black},%: Color for URLs which open local files.
+    menucolor={black},%: Color for Acrobat menu items.
+    urlcolor={black}%: Color for linked URLs.
+}
+
+%\numberofauthors{3}
+\author{}
+\date{}
+
+\begin{document}
+
+\title{Andrew's PhD Abstract}
+\maketitle
+
+
+\end{document}

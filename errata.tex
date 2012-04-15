@@ -1,0 +1,452 @@
+\documentclass[a4paper,oneside,11pt]{article} %twoside,draft,openright]
+\tolerance=1000  % all 3 of these commands make LaTeX less fussy about what
+\hbadness=10000  % is a ``good'' length/width/height of a page
+\raggedbottom
+
+% For Margins
+\usepackage{a4}
+\usepackage{anysize}
+%{left}{right}{top}{bottom}
+%\marginsize{38mm}{25mm}{25mm}{25mm} % For print
+\marginsize{31.5mm}{31.5mm}{25mm}{25mm} % For web
+
+\usepackage{ifxetex}
+
+% Makes the text looks a little nicer
+\ifxetex
+    \usepackage[table,hyperref]{xcolor}
+
+    %for use with XeTeX
+    \usepackage{fontspec}
+    \usepackage{xunicode}
+    \usepackage{xltxtra}
+
+    \defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (``quotes'' --- dashes etc.) to unicode
+
+    \setmainfont[Scale=1.075,Ligatures={Common},Numbers={Lining}]{Adobe Garamond Pro}
+    %\setmainfont[Scale=1.075,Ligatures={Common},Numbers={Lining}]{Adobe Caslon Pro}
+    %\setmainfont[Scale=1.075,Ligatures={Common},Numbers={Lining}]{Minion Pro}
+
+    %Look at Neosan for headings
+
+    %\setromanfont [Ligatures={Common,Rare},Numbers={OldStyle}]{Adobe Garamond Pro}
+    %\setmonofont[Scale=0.8]{Monaco}
+    %\setsansfont[Scale=0.9]{Optima Regular}
+\else
+    \usepackage[table,fixpdftex,hyperref]{xcolor}
+
+    \usepackage[ansinew]{inputenc}
+
+    % Makes copy and paste work better ie ligatures get converted
+    \usepackage{cmap}
+    \usepackage{mmap}
+    \usepackage[protrusion=true,expansion=true]{microtype}
+
+    % Use a nice Adobe font
+    % used instructions from: http://umrg.uwaterloo.ca/cpoile/LaTeX
+    \usepackage[LY1]{fontenc}
+    %\usepackage[ansinew]{inputenc}
+    %\usepackage[scaled=1.05,lining]{GaramondPro} % [oldstyle] for different number style
+    % can use \textos{1234} or \textln{5678} to change how the numbers are displayed
+\fi
+
+\usepackage{titling} % Allows the title page vars to be reused
+
+\usepackage{setspace} %double spacing for text, single for captions,
+		      	   %footnotes, etc.
+%\usepackage{draft} %draft option - doesn't put full figures in -
+		    % useful when editing
+
+% Makes fancy footers/headers on the pages
+%\usepackage{fancyhdr}
+
+% Adds extra PDF metadata
+\usepackage{hyperxmp}
+
+\usepackage{multirow}
+\usepackage{tabularx}
+
+%for PDF features (last imported package, for maximum capability)
+\ifxetex
+    \usepackage[unicode,xetex,pdfpagelabels,pagebackref]{hyperref} % For the bookmark/hyperlinks
+\else
+    \usepackage[unicode,pdftex,pdfpagelabels,pagebackref]{hyperref} % For the bookmark/hyperlinks
+\fi
+
+% *************************** Metadata *********************************
+
+    % Perhaps, "The Impact of Highly Interactive Workloads on Video-on-Demand Systems"
+    % The Impact of Highly Interactive Workloads on Content Distribution Networks
+\title{Errata for ``The Impact of Highly Interactive Workloads on Video-on-Demand Systems''}
+\author{Andrew Brampton B.Sc (Hons)}
+\date{}
+
+\hypersetup{%
+    pdftitle={\thetitle},
+    pdfauthor={\theauthor},
+    pdfsubject={},
+    pdfkeywords={Interactive, Video-on-demand, Multimedia, Workloads, Characterisation},
+    pdfcopyright={Copyright (C) 2008, Andrew Brampton},
+%
+    plainpages=false,
+    bookmarksnumbered=true,
+    pdfstartview={FitV}, % Full screen vertical
+    colorlinks={false},  % No color links
+    pdfborder={0 0 0},   % No borders around links
+%
+    pdfcreator={XeTeX},%
+}
+
+% **************************** Macros **********************************
+
+%Defines the headers of the page
+%\pagestyle{fancy}
+%\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter:\,\ #1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\,\ #1}}
+%
+%% fancyhdr settings
+%\headheight 16.60005pt % Set to remove warnings
+%\fancyhead{}
+%\fancyhead[L]{\rm\leftmark}
+%\fancyhead[R]{\rm\rightmark}
+%
+%\fancyfoot{}
+%\fancyfoot[C]{\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%      end of preamble and start of document     %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\newcolumntype{H}{>{\raggedright\arraybackslash} m{14cm} }
+\newcolumntype{L}{>{\raggedleft\arraybackslash}  m{1cm}  }
+\newcolumntype{R}{>{\raggedright\arraybackslash} m{13cm} }
+
+\newenvironment{errata}
+    { \noindent\begin{tabular}{|L|R|}\hline }
+    { \end{tabular} \\~\\}
+
+\newcommand{\heading}[1]{\multicolumn{2}{|H|} {\textbf{ #1 }}\\\hline}
+\newcommand{\note}  [1]{Note   & #1 \\\hline}
+\newcommand{\before}[1]{Before & #1 \\\hline}
+\newcommand{\after} [1]{After  & #1 \\\hline}
+
+\maketitle
+
+\section{General Changes}
+
+\begin{errata}
+    \heading{The Background work considered should be more critically discussed. In particular with respect to instantaneous popularity of all content items as an issue separate from popularity development over time.}
+    \after{
+    %The development of popularity over time is Section 2.2.1.2, and General popularity is Section 2.2.1.1, therefore a extra paragraph was added in the middle of Section 2.2.1.1;
+    In Section 2.2.1.1 Popularity, it was made clear that Zipf can not be used over time, by adding the following paragraph into the middle of the section:
+
+        ``The fact that Zipf did not fit well over a year time scale is often overlooked and the reasons for this are typically misunderstood. Zipfian models are useful for static distribution, those which do not have a temporal component. For example, Zipf was first developed by George Kingsley Zipf when studying the frequency of words appearing in a corpus of natural language. The corpus would not change over time, \emph{i.e.} words would not be added or removed. This differs from popularity of videos over a timescale as it is common for new videos to be added and removed over time, and for the popularity of the videos to change over time. Instead the Zipf models should be used to model the popularity over a shorter periods, such as daily or weekly, or used to blindly model the rank of objects on daily bases. For example, objects on a daily bases may follow a Zipf distribution, but instead of noting the popularity of each object, instead note the popularity of each rank. This will then more accurate model the expected popularity on any given day, and is more useful for the design of caching systems.''
+    }
+\end{errata}
+
+\begin{errata}
+    \heading{Model fitting: the different models should be discussed with respect to their use case (i.e. consider carefully what they have been intended for). They should then be applied considering their suitability to express a specific case investigated within the thesis.}
+
+    \note{
+        Firstly I've created two pages of new content, 4.1 Probability Distribution, which outlines the main models and what they are useful for.
+
+        I have also gone though the evaluation and added some extra text where needed to help explain how the model is relevant.
+    }
+
+    \before{In the last paragraph of Section 4.3: ``Additionally, the skewed nature of this distribution is most likely because it is impossible to have a negative seek value.''}
+
+    \after{``Regarding long-ranged seeks, the log-normally distributed models imply that some very large distance seeks do occur, but the majority of seeks are shorter. Additionally, the skewed nature of this distribution is most likely because it is impossible to have a negative seek value.''}
+
+    \before{Second/Third paragraph of Section 4.4: ``Our analysis reveals that object popularity does not follow the typical power-law distribution observed within CDNs~[CWVL01,~AKEV01,~YZZZ06], but instead is a normal distribution with parameters $\mu = 60$ and $\sigma = 32$. This can be attributed to the nature of our videos and the relatively few new objects each day.''}
+
+    \after{``Typically object popularity with CDNs and VoD systems follows a power-law distribution~[CWVL01,~AKEV01,~YZZZ06], however, our analysis reveals otherwise. Instead the ranking of objects best fitted a normal distribution with parameters $\mu = 60$ and $\sigma = 32$. There are two reasons that power-law was not the best fit. Firstly, the catalogue of 88 videos was not very large, and secondly, power-law distributions do not fit well if the objects are constantly changing. Instead power-law fits better if a snapshot of rank \emph{vs.} popularity is taken each day and aggregated.''}
+
+    \before{Third/Fouth paragraph of Section 4.4 ``The popularity of one-second segments for all the videos exhibit a Weibull...'' }
+
+    \after{``Again, the popularity of one-second segments might be best suited by a power-law, however Zipf and Pareto did not fit well. Instead, the popularity of one-second segments for all the videos exhibit a Weibull...''}
+
+    \note{
+        It was commented by Griwodz that perhaps I remove Table 4.3 (the table that lists how well different models fitted each metric). If you feel my use of models is better without the table then I will remove it, otherwise I'd like to keep it.
+    }
+
+\end{errata}
+
+\begin{errata}
+    \heading{E.g. Zipf expresses popularity only for periods where popularity does not significantly change, whereas this is the case in the presented work.}
+    \note{
+    Hopefully the clarification of Zipf in section Section 2.2.1.1 should suffice.
+
+    Also, in my evaluation Zipf was not discussed as a good fit for any distribution, including popularity. Instead popularity of objects was normally distributed, and popularity of segments was log-normal (however, the popularity of segments did not change over time, therefore it shouldn't be impacted).
+    }
+\end{errata}
+
+\begin{errata}
+    \heading{Explain fittings and elaborate what you try to achieve in this thesis (Zipf, R-Square, Kolmogorov-Smirnov text, etc.)}
+    \note{The newly added Section 4.1, Probability Distribution, and more specifically Section 4.1.1 helps explain why fitting was used, and what I tried to achieve.}
+\end{errata}
+
+\begin{errata}
+    \heading{Elaborate more on interactivity and user issues such as:}
+
+    \heading{Impact of assumed trick-modes, (e.g. FFW, Rewind, time-code controls, etc.)}
+    \note{ Section 4.2 outlines how often each trick-mode was used, along with how this influenced the users. Perhaps more is needed? One change I have made is to actually use the term ``trick-mode''.}
+
+    \after { This was added in Section 3.1 paragraph 5. ``We also wanted the interface to offer modern interactive controls (sometimes called \emph{trick-modes}), such as the ability to seek forward and backwards, as well as pausing and resuming.''}
+
+    \heading{User behaviour and the influence of bookmarks.}
+    \note{ The influence that the bookmarks had on the users was already summarised in paragraph 1 and 4 of Section~4.11. Also the fact that users seeked from bookmark to bookmark (as explained in Section~4.8) also highlights this fact. However, if you feel I should explicitly write more about this then I'll add it to Section~4.11.}
+
+    \heading{Content semantics and their impact, E.g. Sports vs. music videos}
+    \note{I have added a couple of paragraphs into Section 4.11 (Summary).}
+    \after{
+    ``Though out the experiment different genres of videos were available to the users, namely sporting and musical videos. Only the analysis of the ``Argentina vs. Serbia and Montenegro'' football match and the ``Eurovision song contest'' were shown in this chapter, however other sporting events were available on the site such as Formula 1 racing, International Cricket, and other miscellaneous recordings of music channels. Similar patterns were observed for each video, however, semantics of the content did have some impact of how the users consumed the data.
+
+    All videos exhibited similar patterns, for example, popularity was generally centered around the bookmarked segments, and that the viewing duration was far shorter than the full length of the video. However, minor differences were found, for example, the music channels had greater variance in the popularity of each bookmark (which were placed at the beginning of individual music videos). This can easily be attributed to users only being interested in particular artists or videos, whereas viewers of sporting events would be interested in every highlight (and therefore every bookmark). Similar differences were found in the inter-seek times, session times, and hotspot lengths, as the semantics of the content would determine how long particular hotspots were. However, metrics such as the number of interactions, or bookmark longevity stayed the same, as these did not appear to be directly impacted by the content.''
+    }
+\end{errata}
+
+\section{Checklist Changes}
+
+\begin{errata}
+  \heading{ Page 2: too general remark on multicast, please revise }
+  \before { ``For example, network or application-level multicast is no longer suitable under heavy loads of interactivity'' }
+  \after  { ``For example, conventional network and application-level multicast is not suitable for providing interactivity.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 6, \textsection 2.1 - causality sentence, popularity and causality, please revise }
+  \before { ``This has been driven by incredible demand, causing these video-on-demand (VoD) applications becoming increasingly popular.'' }
+  \after  { ``This has been driven by incredible demand, causing new video-on-demand (VoD) systems to appear, almost daily, to serve different niches.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 17, push deadline discussion to be clarified }
+  \before { ``With tree based distribution, it is typical for push distribution to be used. As each peer will require the segments at a similar deadline...'' }
+  \after  { ``Push distribution is typically used for live streaming in combination with tree based distribution. In live streaming each peer will require the segments by a similar deadline...' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 29: deepen discussion on popularity change over time. This was observed but no appropriate model. Discuss influence on your own model }
+%  \before {  }
+  \after  { Add at the end of the section 2.2.1.3 ``Although popularity of objects change over time, it appears these changes are very specific to the viewing population and genres of the objects. In the current research no single model has been found which accurately explain the observed behaviours, however, it is clear that this is an important metric for cache design.''
+
+  Also section 4.5, `Longevity', has been adapted to discuss how change in popularity effects my own models.
+  }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 31, \textsection 2.2.1.4 2nd paragraph: explain environment and significance }
+  \before { ``For example, Chesire~\emph{et~al.} showed that 85\% of all sessions lasted less than 5 minutes with a median session duration of 2.2 minutes'' }
+  \after  { ``For example, in 2001, whilst studying streaming traffic on a large university campus, Chesire~\emph{et~al.} showed that 85\% of all sessions lasted less than 5 minutes with a median session duration of 2.2 minutes''.
+
+  The significance of these findings is explained in the 5th paragraph of this section. }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 35, \textsection 2.2.2.2: Clarify distribution of session duration }
+  \note { The shape of the distribution is discussed, however my notes ask about the ``top 3\%'' comment }
+
+  \before { ``These results were similar to Chesire~\emph{et~al.} who found a similar long-tailed distribution with their top 3\% of sessions being more than a hour in length.''}
+  \after  { ``These results were similar to Chesire~\emph{et~al.} who found a similar long-tailed distribution with their top 3\% of the population being more than a hour in length.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 37: Clarify sentence starting with ``However'', second paragraph with respect to the long-tail content}
+  \before { Two sentences have been added onto the end of the 2nd paragraph to help clarify. }
+  \after  { ``For example, one caching policy can be used for most popular content, whilst another can be used for the more niche content. As such, the niche caching policy may only store the content in local caches for a short, whereas the very popular content is kept available for a longer period of time, on a more global scale.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 38: Pre-fix caching, reference appropriate pre-fix caching paper (one of the later papers that e.g. are introducing delayed harmonic broadcasting by Paris). }
+  \before { ``Techniques such as prefix caching can also aid in deciding which segments are the most useful to cache and replicate.''}
+  \after  { ``Techniques such as prefix caching[SRT99, HNG+99] can also aid in deciding which segments are the most useful to cache and replicate.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 39: ``perhaps encourage'', please rephrase }
+  \before { ``This system was designed to provide controls which allowed and perhaps encouraged the use of interactivity.'' }
+  \after  { ``This system was designed to provide powerful, yet simple interactivity controls, which would hopefully encourage more interaction between the users and the system.'' }
+\end{errata}
+
+\begin{errata}
+  % Page 7 first introduces Web 2.0
+  \heading{ Page 42: state the rules of describing metadata and also web 2.0 about tagging. }
+  \note   { The rules for the metadata was content specific and is described later in section 3.3, so therefore I added a forward reference. }
+  \before { ``This metadata included the title and description of the video as well as marking the location of key events within the videos which would become \emph{bookmarks}.''}
+  \after  { ``This metadata included the title and description of the video as well as marking the location of key events within the videos which would become \emph{bookmarks} (more details on what was bookmarked is listed in Section~3.3).'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 47: standard deviation of 30, please remove from text }
+  \before { ``In total there were 88~videos, each video on average was 2.5~hours in length with a standard deviation of 30 minutes.'' }
+  \after  { ``In total there were 88~videos, with an average length of 2.5~hours'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 49: explain the 383 effect of being the most clicked on (without being really viewed) }
+  \note   { A extra paragraph has been added to explain this }
+  \after  { ``An observant reader will note that the most popular video had 383 unique users, yet the analysis is concentrated on \emph{arg-scg} and \emph{eurovision} with only 123-131 unique users. The reason for this is that the most popular content, a collection of `cheesy' music videos, had a very short average session duration. The video was the newest content on the site for many weeks, as such was at the top of the list of videos. We speculate that newcomers to the site would click on this video to understand what the site had to offer, but quickly stop. Shortly afterwards they would continue to explore the other videos on the site, which were perhaps better to their liking. These shorts views were therefore not representative of a typical viewing session and thus the analysis does not concentrate on them.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 50, paragraph 2: the comment on short session duration needs to be verified; }
+  \note   { I double checked the literature, and the facts I stated were correct }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 50, paragraph 1: explain how small and long seeks are treated (are small seeks joined?) }
+  \note   { I changed the wording to make it clear these are individual seeks, when using the seek buttons. }
+  \before { ``Small forward seeks were used a combined 24.9\% of the time, whereas backward seeking was only used 7.67\%. These actions only accounted for the relatively small seeks (10, 30, and 60 seconds)'' }
+  \after  { ``Small individual forward seeks were used a combined 24.9\% of the time, whereas individual backward seeking was only used 7.67\%. These actions only accounted for the short-seeks buttons (10, 30, and 60 seconds)'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 52: Clarify figure 4.3 a and b's relationship (probably in figure caption) }
+  \before { ``Figure 4.2: CDF of seek distance: (a) Small scale, (b) Large scale'' }
+  \after  { ``Figure 4.2: CDF of backward and forward seek distances: (a) All seek (b) All seeks cropped at 200 seconds'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 54: clarify Eurovision bookmark placement }
+  \before { ``The vertical lines signify the position of the bookmarks; note for the \emph{eurovision} video there were no bookmarks after 6000 seconds since the performances bookmarked were only in the first half.'' }
+  \after  { ``The vertical lines signify the position of the bookmarks; note for the \emph{eurovision} video there were no bookmarks after 6000 seconds as only the performances were bookmarked and they all appeared in the first half of the video.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 54: second but last and last sentence on this page, please clarify }
+  \before { ``We have seen that bookmarked videos provide a content format with specific segments of interest (goals, for example).'' }
+  \after  { ``We have seen that bookmarks within videos cause segments of high interest and popularity, for example, goals within a sporting event.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 55: clarify figure 4.6 description (resp. caption) }
+  \before { ``Bookmark utilisation over time, following initial usage'' }
+  \after  { ``Bookmark utilisation within all videos over time, following initial usage'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 55: clarify the popularity statement (``popularity within a video'') }
+  \before { ``The segments which were popular when the video was first published were still popular within the video weeks later, long after the video had lost popularity.'' }
+  \after  { ``For example, the segments which were popular within that video when it was first published were still popular within the video weeks later, long after the video had lost it overall popularity.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 57: Clarify Poisson and Pareto statement }
+  \note   { I noticed I made a mistake here, the two distribution were Weibull and Pareto, not Poisson. }
+  \before { ``For educational content, inter-seek times have also been shown to be \emph{Poisson} or \emph{Pareto} distributed~[AKEV01]. We however found only two thirds of our videos had inter-seek times that could be suitably modelled by a Pareto distribution, and none that could be modelled well with a Poisson distribution.'' }
+  \after  { ``For long educational content, inter-seek times have also been shown to be Weibull distributed or a combination of Weibull for the body and Pareto for the tail~[AKEV01]. We found that most of our videos had inter-seek times that could be suitably modelled by a Weibull distribution, and two thirds which could be modelled with Pareto alone.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 77/78: mention ageing alongside flushing }
+  \note   { Added new paragraph after the flushing discussion. }
+  \after  { ``A final suggested technique would use the concept of aging, whereby, entries in the table who have not be observed recently are removed from the table. This technique may provide the most relevant entries at the cost of additional overhead for each entry.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 78, 5.3: correct that some pull based systems have structure, e.g. PROMISE, DAGSTREAM }
+  \note   { Changed the sentence, and references to these systems are provided in a earlier chapter }
+  \before { ``The pull based system does not try to configure the peers into any structured way, instead creating a mesh of connections between the peers.'' }
+  \after  { ``The pull based system do not typically try to configure the peers into any structured way, instead creating random meshes of connections between the peers.'' }
+\end{errata}
+
+\begin{errata}
+  % TODO
+  % gao1999siv: Gao \& Towsley - Supplying Instantaneous Video-on-Demand Systems Using Controlled Multicast
+  % eager1999mbd : Minimizing bandwidth Requirements For On-Demand data delivery
+  % griwodz2000tlp : Tune to lambda patching
+  \heading{ Page 80: include alternatives to greedy discussion, e.g. controlled multicast (Gao \& Towsley , ICMCS 1999; Eager, Vernon, Zahorjan, MIS 1999, Griwodz, Liepert, Zink, Steinmetz, PER 2000) }
+  \note { Added a new paragraph in the middle of the patching discussion. I have only referenced ``Gao \& Towsley , ICMCS 1999'' and ``Griwodz \emph{et al.} PER 2000'' here. The reference ``Eager, Vernon, Zahorjan, MIS 1999'' was added to the concluding paragraph. }
+  \after  { ``A middle ground is controlled multicast, which adds access controls limiting how many patching channels can be created. For example, the controlled \emph{CIWP} algorithm~[GT99] uses a mathematically optimal scheduling algorithm that limits the rate at which patching channels are created. Another technique, Lambda Patching~[GLZS00], allows the server to decide on the patching window sizes, based on currently observed popularity and interarrival times.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 82: reconsider last sentence of 5.3.2.1 with respect to bandwidth in periodic broadcast }
+  \note   { I'm unsure of the issue here, and my notes don't help. }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 86, figure 5.7: mention uplink capacity in the caption }
+  \before { Instead of changing the caption I have expanded the paragraph which talks about the experiments. ``Content node(s) (those sourcing the media) are attached to the aforementioned transit node(s), whereas clients are attached to randomly selected members of the stub domain(s).'' }
+  \after  { ``Content node(s) (those sourcing the media) are attached to the aforementioned transit node(s), whereas clients are attached to randomly selected members of the stub domain(s). The content nodes are connected via highly provisioned links, whereas, the clients are limited to a typical asymmetric link (1Mbit down, 256kb up).'' }
+\end{errata}
+
+\section{Spelling/Grammar Changes}
+
+\begin{errata}
+  \heading{ \textsection 2.1.5 Para. 6, Sentence 9 - Added word }
+  \before { ``One problem for all trees, is that they may very deep, causing a high latency (or lag) for the peers near the bottom.'' }
+  \after  { ``One problem for all trees, is that they may \textbf{become} very deep, causing a high latency (or lag) for the peers near the bottom.'' }
+\end{errata}
+
+\begin{errata}
+    \heading{ \textsection 2.2.1.1 Para. 2, Sentence 1 - Duplicate reference }
+    \before { ``Dan et al. in 1994 [DSS94\textbf{a}]'' }
+    \after  { ``Dan et al. in 1994 [DSS94]''  }
+\end{errata}
+
+\begin{errata}
+  \heading{ \textsection 5.1 Para. 11, Sentence 2 - Added a comma }
+  \before { ``we have potentially stopped video being transferred which might have normally been skipped over'' }
+  \after  { ``we have potentially stopped video being transferred\textbf{,} which might have normally been skipped over''  }
+\end{errata}
+
+\begin{errata}
+  \heading{ \textsection 5.2.2 Para. 1, Sentence 1 - Fixed spelling of sparsely }
+  \before { ``The workloads observed in this thesis exhibited sparely distributed'' }
+  \after  { ``The workloads observed in this thesis exhibited \textbf{sparsely} distributed'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ \textsection 5.2.3 Para. 3, Sentence 4 - Fixed grammar }
+  \before { ``it has been purposely been designed so'' }
+  \after  { ``it has purposely been designed so'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ \textsection 5.3.1 Para. 4, Sentence 4 - Added missing word }
+  \before { `` After 10~minutes they would have caught up with the channel and thus can disconnect from their behind channel.'' }
+  \after  { `` After 10~minutes they would have caught up with the \textbf{ahead} channel and thus can disconnect from their behind channel.'' }
+\end{errata}
+
+\section{Other Changes}
+
+\begin{errata}
+  \heading{ Title Page - Changed title }
+  \before { ``The Impact of Highly Interactive Workloads on Multimedia Systems'' }
+  \after  { ``The Impact of Highly Interactive Workloads on Video-on-Demand Systems''  }
+\end{errata}
+
+\begin{errata}
+  \heading{ Page 2: too general remark on multicast, please revise }
+  \before { ``For example, network or application-level multicast is no longer suitable under heavy loads of interactivity'' }
+  \after  { ``For example, conventional network and application-level multicast is not suitable for providing interactivity.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ \textsection 3.1 Para. 2 - Expanded on what metadata }
+  \before { ``Administrators would then manually add metadata to the system describing the files as well as marking the location of key events within the videos which would become \emph{bookmarks}.'' }
+  \after  { ``Administrators would then manually add metadata to the system describing the files. This metadata included the title and description of the video as well as marking the location of key events within the videos which would become \emph{bookmarks}.'' }
+\end{errata}
+
+\begin{errata}
+  \heading{ Missing reference to Figure 2.1 }
+  \before { Added to section 2.1.1
+  ``The HTTP servers used for streaming are typically hosted by a content distribution network (CDN).'' }
+  \after  { ``The HTTP servers used for streaming are typically hosted by a content distribution network (CDN) as depicted in Figure 2.1''  }
+\end{errata}
+
+\begin{errata}
+  \heading{ Missing reference to Figure 2.2 }
+  \before { Added to section 2.1.3
+  ``The Sky+ PVR, for example, records broadcast TV received via a satellite dish.'' }
+  \after  { ``The Sky+ PVR, for example, records broadcast TV received via a satellite dish as seen in Figure 2.2''  }
+\end{errata}
+
+\begin{errata}
+  \heading{ Missing reference to Figure 2.4 }
+  \note { I removed this figure, there was no way to easily fit it into the text. I did however really like this image :(  }
+\end{errata}
+
+\end{document}

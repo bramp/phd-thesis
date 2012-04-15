@@ -1,0 +1,101 @@
+\chapter{Conclusion}
+\label{chap:conclusion}
+
+This chapter is divided into three main sections, firstly, a brief overview of contributions this thesis has made. Followed by a discussion of possible future work, and finally wrapped-up with concluding remarks.
+
+\section{Thesis Contributions}
+
+%here
+    This thesis has provided several contributions for the research community. For the first time, traces are now available from a highly interactive video-on-demand system, which show behaviour not previously observed. These traces have been analysed and modelled, to produce detailed and thorough user workloads, which will aid in the designing and testing of future video-on-demand techniques.
+
+    Additionally, the modelled behaviour exhibited usage patterns which were a complete departure from the classic start-to-finish models. When users are given a choice and the media is of an appropriate genre, users will only seek to and view the areas they are interested in. This is aided by the bookmark feature, which clearly influenced what was viewed. The combination of this produced \emph{hotspots}, areas of high interest, which were common to all our videos.
+
+    With the models outlined in \autoref{chap:evaluation}, it is clear that many existing delivery techniques do not perform well any more, as they were originally designed under the assumption of the start-to-finish model. However, with these new models it is possible to create new techniques which exploit these new usage patterns. Three new techniques were explained in \autoref{chap:new_techiques}.  These include a method for detecting and moving ill-placed bookmarks, a method to pre-fetch far ahead of playback to popular segments, and finally, a new hybrid scheme which shows how peer-to-peer schemes operate under high interactivity.
+
+    The pre-fetching schemes builds up knowledge in real-time from the live system of what segments of the media are popular and in what order they are typically viewed. Using this knowledge it was demonstrated that users can successfully pre-fetch segments or \emph{hotspots}, which they will probably view in the near future.
+
+    The hybrid peer-to-peer section outlined how existing peer-to-peer solutions were not appropriate for these interactive workload. This is supported by our experimentation which shows that a hybrid push/pull approach performed far better than existing peer-to-peer approaches.
+
+%
+%\begin{itemize}
+%    \item Detailed Analysis of a highly interactive Video-on-demand system, now available to the research community
+%    \item Models of how users interactive with the media
+%        \item Observed patterns previous not seen
+%            \item People do not consume start-to-finish
+%            \item Bookmarks highly influence things
+%            \item Hotspots are common
+%
+%    \item With these models we can start producing new techniques to exploit these behaviour
+%    \begin{itemize}
+%       \item Sequences of events (encouraging to be predictable)
+%       \item Moving the bookmarks
+%       \item Predicting the sequences of events
+%       \item Hybrid delivery mechanisms. How both push and pull can be used to provide efficient delivery, whilst catering for highly dynamic workloads
+%    \end{itemize}
+%\end{itemize}
+
+\section{Future Work}
+
+    As bookmarks in our system were very popular, in a fully autonomic system the bookmarks should perhaps be created automatically. This could occur after the system has detected a large number of requests for a specific area of a video. A bookmark could then be provisionally placed and its position refined by a bookmark-moving algorithm.
+
+    Hotspots should also be detected automatically by the system, as their position and popularity can greatly be exploited. In this thesis we have only discussed the hotspot's length, but equally their start position can be inferred in the same (or similar) way to a bookmark's position. Alternative approaches could be taken which, for example, rank all the segments of the media by their popularity, and decide the top-N\% should be hotspots. These rankings could easily be obtained using a cache replacement policy such as the least frequently used (LFU) or least recently used (LRU).
+
+    During our experiment, users were unhappy that we ``spoilt the experience'' of watching the sporting events covered somewhat, as the user could quickly determine the final outcome of the event from the bookmark names. The suggestion was made that we avoid labelling the bookmarks and instead simply describe them as points of interest. This could equally work if the bookmarks were autonomically created, since a system would be unable to name them itself. Note, unnamed bookmarks would only be useful if they are typically accessed sequentially, and not based on their name alone.
+
+    It was shown that pre-fetched bookmark hotspots only covered 35\% of all viewed segments. Thus, pre-fetching schemes should consider more segments. This, of course, would make it harder to decide which segments to pre-fetch next. The cost of making a wrong decision could be reduced if the pre-fetching technique was modified, for example, pre-fetching more than one choice simultaneously.
+
+    Additionally, the data required for pre-fetching has not been fully exploited. There are numerous other uses for this data, such as producing management or business reports, better caching algorithms, construction of peer-to-peer overlays, or even deciding which segments to push to the user overnight. The cache algorithm could, for example, take into account any segments of the video which depend on another segment, and thus related segments are kept or evicted from the cache together.  With peer-to-peer overlays, the network topology could fundamentally be structured based on the pre-fetching knowledge.
+
+    This thesis briefly looked at peer-to-peer delivery and it is clear that as demand for online media increases, techniques such as P2P will be used more. Many internet service providers (ISPs) are worried about P2P, as their networks were not designed or deployed to be symmetric. The typical home broadband connection has a higher downstream bitrate than upstream making it asymmetric. Yet, it has been shown that if the P2P topology is designed correctly, it can reduce the cost for the ISPs and content providers, with only a minor decrease in performance for the users~\cite{karagiannis2005sis,huang2007civ}. This still needs further work to help balance the cost to ISPs, and the performance impact to the user, especially when considering the highly interactive workloads.
+
+    Many of the suggested solutions for delivering this content, such as peer-to-peer, are relatively simple for a standard desktop PC to use, however, more and more media is being consumed via mobile devices. 3G phones are being used to watch clips from the internet and Apple iPods are automatically downloading audio and video podcasts each day, providing their users with a ``personal on demand broadcasting'' service. These small mobile devices may not benefit from client-side improvements; instead the network should perhaps become more intelligent to be able to serve this new generation of device.
+
+    While not available today, future forms of interactivity may add an extra dimension to these problems. For example, systems which allow picture-in-picture (PiP), the ability to display one main video, with one or more smaller supplementary videos being displayed on top. Imagine a system where when watching a programme, areas of the video could be highlighted to form a hyperlink to more information. This hyperlinked information would then be displayed with picture-in-picture technology. This can be considered useful in many situations, for example, finding statistics about players in sporting events, viewing more information on a news article, or reading reviews or production notes about a film currently being shown. Now, videos could hyperlink between each other, not just causing links between \emph{hotspots}, but now between videos.
+
+    While not the case for all content, high levels of interactivity are becoming more common, whilst users are both relying on and expecting video-on-demand services to provide more advanced interactive functionality. Our study suggests that CDN mechanisms must improve to handle more diverse applications, content and users. To achieve this, the development of new algorithms must be driven by models derived from realistic characterised workloads. The development of such strategies is reliant on gaining a deeper understanding of the relevant workload parameters. The analysis and models presented in this thesis aim to aid in this endeavour.
+
+\section{Conclusion}
+
+%\begin{itemize}
+%    \item Detailed Analysis of a highly interactive Video-on-demand system
+%    \begin{itemize}
+%        \item Observed patterns previous not seen
+%            \item Bookmarks highly influence things
+%        \item People do not consume start-to-finish
+%            \item Hotspots are common
+%        \item Models of how users interactive with the media
+%        \item Sequences of events (encouraging to be predictable)
+%    \end{itemize}
+%    \item With these models we can start producing new techniques to exploit these behaviour
+%    \begin{itemize}
+%       \item Moving the bookmarks
+%       \item Predicting the sequences of events
+%       \item Hybrid delivery mechanisms. How both push and pull can be used to provide efficient delivery, whilst catering for highly dynamic workloads
+%    \end{itemize}
+%\end{itemize}
+
+    We have presented a study and characterisation of user behaviour for our interactive Video-on-Demand system. We note that by adding simple bookmarks to points of interest within the media, the access patterns are greatly influenced. This behaviour led to high levels of seeking which created relatively short and sparsely distributed segments whose popularity was orders of magnitude more popular than other segments.
+
+    Many existing delivery mechanisms are not designed for high levels of interactive behaviour and are instead optimised for classic start-to-finish streaming. Content distribution techniques must therefore adapt to efficiently handle these kinds of access patterns. They could, for example, take advantage of the power-law distributions of segment popularity by replicating those that generate the most demand. For instance, we observed that 10\% of segments accounted for 44\% of all requests.
+
+    The departure from classic start-to-finish playback encourages the design of agile delivery mechanisms that allow quick seeking, and expect certain segments to be more popular. We have seen that adding bookmarks will highly influence the order in which users view the content, making the sequence of actions somewhat predictable. This can then be exploited by allowing users to pre-fetch content that they are predicted to need shortly, thus reducing any delays that they are likely to experience. However, we noted that bookmarks could be harmful by causing unnecessary seeks if incorrectly placed. This could be remedied for both client and server by simply moving the bookmark autonomically based on observed user behaviour.
+
+    Advances in pull-based peer-to-peer VoD can aid in agile delivery, however the overheads associated make it unacceptable in some situations. Instead, a combination of push-based peer-to-peer delivery, which typically does not handle seeking well, and pull-based, can produce an efficient delivery platform for these interactive workloads.
+
+    So far we have only considered bookmarks within music and sport videos, but bookmarks are equally applicable in many other genres. For example, bookmarks are commonly found in the form of chapters on video DVDs. It is not clear if the same high levels of interactivity would be observed in such media, or if the classic start-to-finish model would still be prevalent.
+
+    In conclusion, we are entering a new era of video-on-demand, one where media is being consumed in abundance, on a myriad of devices. Our VoD systems must be flexible and agile to support current and future trends, as well as to take advantage of new techniques such as peer-to-peer, or to expect new user behaviours such as those demonstrated in this thesis. Overall, this is an exciting new future for online media, and one which provides many opportunities for improvement.
+
+%\begin{itemize}
+%    \item Start investigating how CDNs can take advantage of these concepts. (For instance, we observed that 10\% of segments accounted for 44\% of all requests.)
+%    \item Try a lot of these ideas for real. Thus far only been simulated
+%    \item Auto creation of bookmarks
+%    \item "spoilt the experience", try different bookmark labelling
+%    \item Pre-fetching multiple things simultaneously. Pre-fetching all segments, not just bookmarks
+%    \item Investigate how pre-fetching knowledge could be used more. Management reports, better caching, better construction of p2p overlays. Pushed out over night
+%    \item Pre-fetching requires disk space, what about mobile devices?
+%    \item Can a user on a phone even seek?!
+%    \item Pre-fetching between videos
+%\end{itemize}
+%
+%\section{Summary}

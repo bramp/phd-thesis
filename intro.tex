@@ -1,0 +1,64 @@
+\chapter{Introduction}
+\label{chap:intro}
+
+% Step back
+% Don't lose site of the genre
+% What's been done, what hasn't been done, whats the context of all this,
+% How does Hybrid fit in?
+% Don't claim I've solved world problems
+% Why you should carry on reading
+% last para "Why this is signatificate and new?". This is a signatifant statement.
+
+%\begin{itemize}
+%  \item Streaming is popular on the internet
+%  \item Streaming is bandwidth and latency intense
+%  \item CDNs/Streaming Protocols are used to allow for best streaming performance
+%  \item These assume start-to-finish model
+%
+%  \item I show that users want more than start-to-finish
+%  \item When given the option VCR style controls are used
+%  \item More novel interactivity controls such as bookmarks could also be used
+%  \item Current CDNs/Streaming protocols are not optimised for these interactive workloads
+%  \item Hybrid techiniques can be employed
+%
+%  \item Do I talk about what I did?
+%
+%\end{itemize}
+
+% Nic has read
+
+In recent years, the distribution of multimedia rich content has become increasingly popular via the internet. Websites offer a range of media, from short user generated clips to high definition feature films. This content typically has strict delivery requirements, needed for optimal playback. The requirements typically include high bandwidth connections and demands low latencies and low jitter.
+
+Many techniques are employed by both client and server to ensure smooth delivery and to minimise operational costs. These techniques include (but are not limited to) pre-fetching, tree-based distribution, and deploying full content distribution networks (CDNs). Generally, these techniques assume that the user consumes the content conforming to particular usage models. The most commonly assumed models are the classic \emph{start-to-finish} model and an extension of this, the \emph{start-to-end} model. With the former model, users will start playback at the beginning of the content and continue until the very end, whereas the latter model assumes that the users stop playback before the end.
+
+As such systems evolve, users expect more control over the playback of their content, and thus improved functionality. For example, VCR-like controls are already common; fast-forward, rewind, pause and resume. More novel interactivity controls are beginning to appear, for example, bookmarks, which give the user the ability to seek directly to a point of interest within the content, such as a chapter or an event.
+
+Offering services which provide a high level of interactive control creates new challenges for traditional delivery mechanisms. For example, conventional network and application-level multicast is not suitable for providing interactivity. Conversely, simple client-server mechanisms work well under high interactivity, however, they can not easily scale to offer a large number of users these services. Regardless of delivery, there are additional problems such as delay caused by start-up or seek latency, as well as the unpredictable workload placed upon the servers.
+
+Nevertheless, there are numerous commercial video-on-demand services which offer varying degrees of interactivity. Thus far, these systems use a brute-force approach, deploying large scale CDNs to satisfy the needs of their users. This thesis will explain how these existing deployments work, and highlight their flaws. We will then continue by discussing how these techniques can be improved to support interactivity, as well as develop some new techniques.
+
+\section{Research Contributions}
+
+%\begin{itemize}
+%  \item Run two experiments with novel interactivity controls
+%  \item Analysis these experiments and show a departure from the classic start-to-finish
+%  \item Generate new models from the user's behaviour
+%  \item Show that we can exploit these new models
+%  \item Show how these new models can be used by hybrid delivery mechanisms
+%\end{itemize}
+
+This thesis presents through experimentation new user behaviour models, more applicable to highly interactive content. These models can aid in simulation and development of new techniques for efficient, quick and cheap delivery of content to the user. The models were derived from data obtained by an experimental Video-on-Demand (VoD) website which we designed and deployed. In addition to generic VCR-like features, this custom built VoD application provided advanced interactivity features such as bookmarking. Over a twelve month period more than 1000 unique users were observed accessing a selection of 88 video files. These videos included the entire 2006 FIFA World Cup and the 2007 Eurovision song contest.
+
+Through detailed analysis of the data, common usage models were characterised, such as object popularity, session duration, and other standard metrics. It was observed that when users were offered additional interactive controls, the content was no longer consumed based on the \emph{start-to-end} model. To aid in characterising this novel user behaviour, additional interactive metrics were developed, which better explained this highly interactive system. These include models for how bookmarks are used, as well as models relating to an emergent property, \emph{hotspots}. These \emph{hotspots} are areas of particular interest within the video in which users often choose to watch (and replay) small segments of the full video, in a complete departure from the classic models. While the behaviour observed may be specific to the content used within the experiments, the results may be of general interest, and relevant to other genres of video with popular highlights (e.g., educational, entertainment, news, \emph{etc.}).
+
+This thesis will discuss how current delivery techniques are not designed to handle such levels of interactivity. Understanding these new models can lead to new techniques to improve the delivery of highly interactive media. For example, the actions of a user may now be predicted based on past users. Also, distributed techniques were developed to detect the location of \emph{hotspots} automatically. Knowing the position of \emph{hotspots} presents new opportunities for caching and replication techniques which did not previously exist with less interactive media. Following from this, new hybrid delivery techniques are explored, which use a combination of established delivery protocols. Hybrid delivery allows for quick, efficient, and cheap delivery of content, while offering the user high levels of interactivity not available with existing delivery systems.
+
+%These includes the analysis of how bookmarks were used, as well as the ability to predict the users next action. , and the abilities to predict which boo
+
+\section{Thesis Structure}
+
+After this chapter, this thesis is organised into five chapters. The chapter immediately following this introductory chapter provides background of existing characteristics models in the areas of live and stored streaming media, and their deficiency in modelling interactive behaviour. The background is continued by explaining how interactive media can be delivery, and the problems with this, and then concluding with a discussion of existing video-on-demand deployments and the problems they face.
+
+\autoref{chap:experiment} describes the design of a video-on-demand system we used to experiment and evaluate new interactive video concepts. This is followed by \autoref{chap:evaluation}, which discusses the results obtained from our experiments, with details on characterising the users behaviour and how these can be modelled for future simulations. The evaluation also contains discussion of the implication these new interactive models have on the design of new systems. \autoref{chap:new_techiques} builds on the results obtained, and discusses ideas which can improve the delivery of interactive media for both the consumer and distributer. This includes dynamic bookmark placement, pre-fetching and a hybrid delivery technique.
+
+This thesis is concluded with \autoref{chap:conclusion} which gives a overview of the work presented in this thesis. The conclusion also suggest future directions for this research. 

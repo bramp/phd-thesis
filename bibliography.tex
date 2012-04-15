@@ -1,0 +1,24 @@
+% Configs what the back references look like
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{%
+    \ifcase #1 %
+        [Never cited]%
+    \or
+        [Cited on page #2]%
+    \else
+        [Cited on pages #2]%
+    \fi
+}%
+
+% ************************** Bib Styles ********************************
+\bibliographystyle{alpha} % [AA08] Ordered by author's name
+%\bibliographystyle{plain} % [1] Ordered by author's name
+%\bibliographystyle{abbrv} % same as plain but with less info in bib
+%\bibliographystyle{unsrt} % [1] Ordered by first use
+
+
+%\todo{Make sure nocite is removed}
+%\nocite{*}
+\phantomsection
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliography{bib}
